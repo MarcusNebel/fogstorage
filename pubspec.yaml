@@ -9,6 +9,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_launcher_icons: ^0.14.4
 
 dev_dependencies:
   flutter_test:
@@ -17,3 +18,17 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/logo_no_bg.png"
+
+  # Spezifisch für iOS:
+  remove_alpha_ios: true
+  background_color_ios: "#0f141b" # Hier Schwarz statt Weiß setzen!
+
+  # Spezifisch für Android:
+  adaptive_icon_background: "#0f141b"
+  adaptive_icon_foreground: "assets/icon/logo_no_bg.png"
+  adaptive_icon_monochrome: "assets/icon/logo_no_bg.png"

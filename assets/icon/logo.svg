@@ -23,7 +23,7 @@
 
   </g>
 
-  <g fill="none" stroke="#2aa8ff" stroke-width="32" stroke-linecap="round" filter="url(#glow)" opacity="0.95">
+  <g fill="none" stroke="#9c9c9c" stroke-width="32" stroke-linecap="round" filter="url(#glow)" opacity="0.75">
 
     <path d="M600 740 C650 700, 710 780, 760 740 C810 700, 870 780, 920 740"/>
     <path d="M600 810 C650 770, 710 850, 760 810 C810 770, 870 850, 920 810"/>
