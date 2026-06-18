@@ -25,11 +25,44 @@ android {
         versionName = flutter.versionName
     }
 
+    signingConfigs {
+        create("release")
+    }
+
     buildTypes {
-        release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+        getByName("debug") {
+            applicationIdSuffix = ".debug"
+        }
+
+        getByName("release") {
+            val isReleaseTask = gradle.startParameter.taskNames.any {
+                it.contains("release", ignoreCase = true)
+            }
+
+            if (isReleaseTask) {
+                val keystoreFile = System.getenv("KEYSTORE_FILE")
+                val keystorePassword = System.getenv("KEYSTORE_PASSWORD")
+                val keyAlias = System.getenv("KEY_ALIAS")
+                val keyPassword = System.getenv("KEY_PASSWORD")
+
+                if (
+                    keystoreFile.isNullOrBlank() ||
+                    keystorePassword.isNullOrBlank() ||
+                    keyAlias.isNullOrBlank() ||
+                    keyPassword.isNullOrBlank()
+                ) {
+                    throw GradleException(
+                        "Release-Build abgebrochen: Signing-ENV-Variablen fehlen."
+                    )
+                }
+
+                signingConfig = signingConfigs.getByName("release").apply {
+                    storeFile = file(keystoreFile)
+                    storePassword = keystorePassword
+                    this.keyAlias = keyAlias
+                    this.keyPassword = keyPassword
+                }
+            }
         }
     }
 }
