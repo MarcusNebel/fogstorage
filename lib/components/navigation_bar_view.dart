@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:fogstorage/gen_l10n/app_localizations.dart';
 
 import 'package:fogstorage/screens/home_screen.dart';
 import 'package:fogstorage/screens/search_screen.dart';
@@ -25,6 +28,8 @@ class _NavigationBarComponentState extends State<NavigationBarComponent> {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context);
+
     return Scaffold(
       bottomNavigationBar: NavigationBar(
         labelBehavior: NavigationDestinationLabelBehavior.onlyShowSelected,
@@ -34,22 +39,22 @@ class _NavigationBarComponentState extends State<NavigationBarComponent> {
             currentPageIndex = index;
           });
         },
-        destinations: const <Widget>[
+        destinations: <Widget>[
           NavigationDestination(
             icon: Icon(Icons.home),
-            label: 'Startseite',
+            label: l10n!.navbar_home,
           ),
           NavigationDestination(
             icon: Icon(Icons.search),
-            label: 'Suchen',
+            label: l10n.navbar_search,
           ),
           NavigationDestination(
             icon: Icon(Icons.add),
-            label: 'Hinzufügen',
+            label: l10n.navbar_add,
           ),
           NavigationDestination(
             icon: Icon(Icons.settings),
-            label: 'Einstellungen',
+            label: l10n.navbar_settings,
           )
         ],
       ),

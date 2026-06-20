@@ -97,6 +97,30 @@ abstract class AppLocalizations {
     Locale('de'),
     Locale('en'),
   ];
+
+  /// No description provided for @navbar_home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get navbar_home;
+
+  /// No description provided for @navbar_search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get navbar_search;
+
+  /// No description provided for @navbar_add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get navbar_add;
+
+  /// No description provided for @navbar_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get navbar_settings;
 }
 
 class _AppLocalizationsDelegate
