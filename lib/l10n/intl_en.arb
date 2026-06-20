@@ -3,5 +3,10 @@
     "navbar_home": "Home",
     "navbar_search": "Search",
     "navbar_add": "Add",
-    "navbar_settings": "Settings"
+    "navbar_settings": "Settings",
+
+    "appbar_home": "Home",
+    "appbar_search": "Search",
+    "appbar_add": "Add",
+    "appbar_settings": "Settings"
 }

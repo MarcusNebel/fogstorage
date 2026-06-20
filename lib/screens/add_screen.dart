@@ -9,8 +9,11 @@ class AddPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final l10n = AppLocalizations.of(context);
 
-    return const Center(
-      child: Text('Add Page'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l10n!.appbar_add),
+        centerTitle: true,
+      ),
     );
   }
 }

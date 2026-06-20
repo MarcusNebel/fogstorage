@@ -19,4 +19,16 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get navbar_settings => 'Einstellungen';
+
+  @override
+  String get appbar_home => 'Startseite';
+
+  @override
+  String get appbar_search => 'Suchen';
+
+  @override
+  String get appbar_add => 'Hinzufügen';
+
+  @override
+  String get appbar_settings => 'Einstellungen';
 }

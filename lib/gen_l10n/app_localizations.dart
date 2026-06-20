@@ -121,6 +121,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get navbar_settings;
+
+  /// No description provided for @appbar_home.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get appbar_home;
+
+  /// No description provided for @appbar_search.
+  ///
+  /// In en, this message translates to:
+  /// **'Search'**
+  String get appbar_search;
+
+  /// No description provided for @appbar_add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get appbar_add;
+
+  /// No description provided for @appbar_settings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get appbar_settings;
 }
 
 class _AppLocalizationsDelegate

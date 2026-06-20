@@ -3,5 +3,10 @@
     "navbar_home": "Startseite",
     "navbar_search": "Suchen",
     "navbar_add": "Hinzufügen",
-    "navbar_settings": "Einstellungen"
+    "navbar_settings": "Einstellungen",
+
+    "appbar_home": "Startseite",
+    "appbar_search": "Suchen",
+    "appbar_add": "Hinzufügen",
+    "appbar_settings": "Einstellungen"
 }

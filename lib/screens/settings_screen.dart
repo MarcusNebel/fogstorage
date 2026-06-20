@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fogstorage/gen_l10n/app_localizations.dart';
 
 /// Settings Page
 class SettingsPage extends StatelessWidget {
@@ -6,8 +7,13 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('Settings Page'),
+    final l10n = AppLocalizations.of(context);
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(l10n!.appbar_settings),
+        centerTitle: true,
+      ),
     );
   }
 }
