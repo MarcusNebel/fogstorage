@@ -10,7 +10,7 @@ class MainApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: const [
+      supportedLocales: [
         Locale('en'),
         Locale('de'),
       ],

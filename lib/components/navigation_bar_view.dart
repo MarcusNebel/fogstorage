@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:fogstorage/gen_l10n/app_localizations.dart';
 
