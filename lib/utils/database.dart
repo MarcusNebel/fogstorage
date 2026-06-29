@@ -7,7 +7,7 @@ import 'package:path/path.dart' as p;
 // Die g.dart Datei wird gleich generiert
 part 'database.g.dart';
 
-// 1. Deine Tabelle
+// 1. Deine Tabellen
 class PartsList extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get title => text().withLength(min: 1, max: 50)();
@@ -15,18 +15,17 @@ class PartsList extends Table {
   TextColumn get discription => text().nullable()();
   IntColumn get number => integer().withDefault(const Constant(1))();
   IntColumn get price => integer().nullable()();
-  TextColumn get storageroom => text().nullable()();
 }
 
 class StorageRooms extends Table {
   IntColumn get id => integer().autoIncrement()();
-  IntColumn get partId => integer()();
+  IntColumn get partId => integer()(); // Verknüpfung zur PartsList-ID
+  TextColumn get roomName => text()(); // Der eigentliche Name des Lagerplatzes
 }
 
-// 2. Die Datenbank-Klasse
-@DriftDatabase(tables: [PartsList])
+// 2. Beide Tabellen in der Datenbank registrieren!
+@DriftDatabase(tables: [PartsList, StorageRooms])
 class AppDatabase extends _$AppDatabase {
-  // Moderner Dart-Syntax für den Konstruktor (behebt die Warnung "use_super_parameters")
   AppDatabase(super.e);
 
   @override

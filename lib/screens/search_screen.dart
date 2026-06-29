@@ -11,7 +11,7 @@ class SearchPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n!.appbar_search),
+        title: Text(l10n?.appbar_search ?? 'Search'),
         centerTitle: true,
       ),
     );

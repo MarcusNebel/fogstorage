@@ -1,20 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:fogstorage/components/navigation_bar_view.dart';
 import 'package:fogstorage/gen_l10n/app_localizations.dart';
+import 'package:fogstorage/utils/database.dart';
 
 class MainApp extends StatelessWidget {
-  const MainApp({super.key});
+  final AppDatabase database;
+
+  const MainApp({super.key, required this.database});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: [
         Locale('en'),
         Locale('de'),
       ],
-      home: NavigationBarComponent(),
+      home: NavigationBarComponent(database: database),
     );
   }
 }

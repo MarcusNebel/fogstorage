@@ -76,17 +76,6 @@ class $PartsListTable extends PartsList
     type: DriftSqlType.int,
     requiredDuringInsert: false,
   );
-  static const VerificationMeta _storageroomMeta = const VerificationMeta(
-    'storageroom',
-  );
-  @override
-  late final GeneratedColumn<String> storageroom = GeneratedColumn<String>(
-    'storageroom',
-    aliasedName,
-    true,
-    type: DriftSqlType.string,
-    requiredDuringInsert: false,
-  );
   @override
   List<GeneratedColumn> get $columns => [
     id,
@@ -95,7 +84,6 @@ class $PartsListTable extends PartsList
     discription,
     number,
     price,
-    storageroom,
   ];
   @override
   String get aliasedName => _alias ?? actualTableName;
@@ -147,15 +135,6 @@ class $PartsListTable extends PartsList
         price.isAcceptableOrUnknown(data['price']!, _priceMeta),
       );
     }
-    if (data.containsKey('storageroom')) {
-      context.handle(
-        _storageroomMeta,
-        storageroom.isAcceptableOrUnknown(
-          data['storageroom']!,
-          _storageroomMeta,
-        ),
-      );
-    }
     return context;
   }
 
@@ -189,10 +168,6 @@ class $PartsListTable extends PartsList
         DriftSqlType.int,
         data['${effectivePrefix}price'],
       ),
-      storageroom: attachedDatabase.typeMapping.read(
-        DriftSqlType.string,
-        data['${effectivePrefix}storageroom'],
-      ),
     );
   }
 
@@ -209,7 +184,6 @@ class PartsListData extends DataClass implements Insertable<PartsListData> {
   final String? discription;
   final int number;
   final int? price;
-  final String? storageroom;
   const PartsListData({
     required this.id,
     required this.title,
@@ -217,7 +191,6 @@ class PartsListData extends DataClass implements Insertable<PartsListData> {
     this.discription,
     required this.number,
     this.price,
-    this.storageroom,
   });
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
@@ -233,9 +206,6 @@ class PartsListData extends DataClass implements Insertable<PartsListData> {
     map['number'] = Variable<int>(number);
     if (!nullToAbsent || price != null) {
       map['price'] = Variable<int>(price);
-    }
-    if (!nullToAbsent || storageroom != null) {
-      map['storageroom'] = Variable<String>(storageroom);
     }
     return map;
   }
@@ -254,9 +224,6 @@ class PartsListData extends DataClass implements Insertable<PartsListData> {
       price: price == null && nullToAbsent
           ? const Value.absent()
           : Value(price),
-      storageroom: storageroom == null && nullToAbsent
-          ? const Value.absent()
-          : Value(storageroom),
     );
   }
 
@@ -272,7 +239,6 @@ class PartsListData extends DataClass implements Insertable<PartsListData> {
       discription: serializer.fromJson<String?>(json['discription']),
       number: serializer.fromJson<int>(json['number']),
       price: serializer.fromJson<int?>(json['price']),
-      storageroom: serializer.fromJson<String?>(json['storageroom']),
     );
   }
   @override
@@ -285,7 +251,6 @@ class PartsListData extends DataClass implements Insertable<PartsListData> {
       'discription': serializer.toJson<String?>(discription),
       'number': serializer.toJson<int>(number),
       'price': serializer.toJson<int?>(price),
-      'storageroom': serializer.toJson<String?>(storageroom),
     };
   }
 
@@ -296,7 +261,6 @@ class PartsListData extends DataClass implements Insertable<PartsListData> {
     Value<String?> discription = const Value.absent(),
     int? number,
     Value<int?> price = const Value.absent(),
-    Value<String?> storageroom = const Value.absent(),
   }) => PartsListData(
     id: id ?? this.id,
     title: title ?? this.title,
@@ -304,7 +268,6 @@ class PartsListData extends DataClass implements Insertable<PartsListData> {
     discription: discription.present ? discription.value : this.discription,
     number: number ?? this.number,
     price: price.present ? price.value : this.price,
-    storageroom: storageroom.present ? storageroom.value : this.storageroom,
   );
   PartsListData copyWithCompanion(PartsListCompanion data) {
     return PartsListData(
@@ -318,9 +281,6 @@ class PartsListData extends DataClass implements Insertable<PartsListData> {
           : this.discription,
       number: data.number.present ? data.number.value : this.number,
       price: data.price.present ? data.price.value : this.price,
-      storageroom: data.storageroom.present
-          ? data.storageroom.value
-          : this.storageroom,
     );
   }
 
@@ -332,22 +292,14 @@ class PartsListData extends DataClass implements Insertable<PartsListData> {
           ..write('partnumber: $partnumber, ')
           ..write('discription: $discription, ')
           ..write('number: $number, ')
-          ..write('price: $price, ')
-          ..write('storageroom: $storageroom')
+          ..write('price: $price')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(
-    id,
-    title,
-    partnumber,
-    discription,
-    number,
-    price,
-    storageroom,
-  );
+  int get hashCode =>
+      Object.hash(id, title, partnumber, discription, number, price);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -357,8 +309,7 @@ class PartsListData extends DataClass implements Insertable<PartsListData> {
           other.partnumber == this.partnumber &&
           other.discription == this.discription &&
           other.number == this.number &&
-          other.price == this.price &&
-          other.storageroom == this.storageroom);
+          other.price == this.price);
 }
 
 class PartsListCompanion extends UpdateCompanion<PartsListData> {
@@ -368,7 +319,6 @@ class PartsListCompanion extends UpdateCompanion<PartsListData> {
   final Value<String?> discription;
   final Value<int> number;
   final Value<int?> price;
-  final Value<String?> storageroom;
   const PartsListCompanion({
     this.id = const Value.absent(),
     this.title = const Value.absent(),
@@ -376,7 +326,6 @@ class PartsListCompanion extends UpdateCompanion<PartsListData> {
     this.discription = const Value.absent(),
     this.number = const Value.absent(),
     this.price = const Value.absent(),
-    this.storageroom = const Value.absent(),
   });
   PartsListCompanion.insert({
     this.id = const Value.absent(),
@@ -385,7 +334,6 @@ class PartsListCompanion extends UpdateCompanion<PartsListData> {
     this.discription = const Value.absent(),
     this.number = const Value.absent(),
     this.price = const Value.absent(),
-    this.storageroom = const Value.absent(),
   }) : title = Value(title);
   static Insertable<PartsListData> custom({
     Expression<int>? id,
@@ -394,7 +342,6 @@ class PartsListCompanion extends UpdateCompanion<PartsListData> {
     Expression<String>? discription,
     Expression<int>? number,
     Expression<int>? price,
-    Expression<String>? storageroom,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
@@ -403,7 +350,6 @@ class PartsListCompanion extends UpdateCompanion<PartsListData> {
       if (discription != null) 'discription': discription,
       if (number != null) 'number': number,
       if (price != null) 'price': price,
-      if (storageroom != null) 'storageroom': storageroom,
     });
   }
 
@@ -414,7 +360,6 @@ class PartsListCompanion extends UpdateCompanion<PartsListData> {
     Value<String?>? discription,
     Value<int>? number,
     Value<int?>? price,
-    Value<String?>? storageroom,
   }) {
     return PartsListCompanion(
       id: id ?? this.id,
@@ -423,7 +368,6 @@ class PartsListCompanion extends UpdateCompanion<PartsListData> {
       discription: discription ?? this.discription,
       number: number ?? this.number,
       price: price ?? this.price,
-      storageroom: storageroom ?? this.storageroom,
     );
   }
 
@@ -448,9 +392,6 @@ class PartsListCompanion extends UpdateCompanion<PartsListData> {
     if (price.present) {
       map['price'] = Variable<int>(price.value);
     }
-    if (storageroom.present) {
-      map['storageroom'] = Variable<String>(storageroom.value);
-    }
     return map;
   }
 
@@ -462,8 +403,255 @@ class PartsListCompanion extends UpdateCompanion<PartsListData> {
           ..write('partnumber: $partnumber, ')
           ..write('discription: $discription, ')
           ..write('number: $number, ')
-          ..write('price: $price, ')
-          ..write('storageroom: $storageroom')
+          ..write('price: $price')
+          ..write(')'))
+        .toString();
+  }
+}
+
+class $StorageRoomsTable extends StorageRooms
+    with TableInfo<$StorageRoomsTable, StorageRoom> {
+  @override
+  final GeneratedDatabase attachedDatabase;
+  final String? _alias;
+  $StorageRoomsTable(this.attachedDatabase, [this._alias]);
+  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  @override
+  late final GeneratedColumn<int> id = GeneratedColumn<int>(
+    'id',
+    aliasedName,
+    false,
+    hasAutoIncrement: true,
+    type: DriftSqlType.int,
+    requiredDuringInsert: false,
+    defaultConstraints: GeneratedColumn.constraintIsAlways(
+      'PRIMARY KEY AUTOINCREMENT',
+    ),
+  );
+  static const VerificationMeta _partIdMeta = const VerificationMeta('partId');
+  @override
+  late final GeneratedColumn<int> partId = GeneratedColumn<int>(
+    'part_id',
+    aliasedName,
+    false,
+    type: DriftSqlType.int,
+    requiredDuringInsert: true,
+  );
+  static const VerificationMeta _roomNameMeta = const VerificationMeta(
+    'roomName',
+  );
+  @override
+  late final GeneratedColumn<String> roomName = GeneratedColumn<String>(
+    'room_name',
+    aliasedName,
+    false,
+    type: DriftSqlType.string,
+    requiredDuringInsert: true,
+  );
+  @override
+  List<GeneratedColumn> get $columns => [id, partId, roomName];
+  @override
+  String get aliasedName => _alias ?? actualTableName;
+  @override
+  String get actualTableName => $name;
+  static const String $name = 'storage_rooms';
+  @override
+  VerificationContext validateIntegrity(
+    Insertable<StorageRoom> instance, {
+    bool isInserting = false,
+  }) {
+    final context = VerificationContext();
+    final data = instance.toColumns(true);
+    if (data.containsKey('id')) {
+      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    }
+    if (data.containsKey('part_id')) {
+      context.handle(
+        _partIdMeta,
+        partId.isAcceptableOrUnknown(data['part_id']!, _partIdMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_partIdMeta);
+    }
+    if (data.containsKey('room_name')) {
+      context.handle(
+        _roomNameMeta,
+        roomName.isAcceptableOrUnknown(data['room_name']!, _roomNameMeta),
+      );
+    } else if (isInserting) {
+      context.missing(_roomNameMeta);
+    }
+    return context;
+  }
+
+  @override
+  Set<GeneratedColumn> get $primaryKey => {id};
+  @override
+  StorageRoom map(Map<String, dynamic> data, {String? tablePrefix}) {
+    final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
+    return StorageRoom(
+      id: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}id'],
+      )!,
+      partId: attachedDatabase.typeMapping.read(
+        DriftSqlType.int,
+        data['${effectivePrefix}part_id'],
+      )!,
+      roomName: attachedDatabase.typeMapping.read(
+        DriftSqlType.string,
+        data['${effectivePrefix}room_name'],
+      )!,
+    );
+  }
+
+  @override
+  $StorageRoomsTable createAlias(String alias) {
+    return $StorageRoomsTable(attachedDatabase, alias);
+  }
+}
+
+class StorageRoom extends DataClass implements Insertable<StorageRoom> {
+  final int id;
+  final int partId;
+  final String roomName;
+  const StorageRoom({
+    required this.id,
+    required this.partId,
+    required this.roomName,
+  });
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    map['id'] = Variable<int>(id);
+    map['part_id'] = Variable<int>(partId);
+    map['room_name'] = Variable<String>(roomName);
+    return map;
+  }
+
+  StorageRoomsCompanion toCompanion(bool nullToAbsent) {
+    return StorageRoomsCompanion(
+      id: Value(id),
+      partId: Value(partId),
+      roomName: Value(roomName),
+    );
+  }
+
+  factory StorageRoom.fromJson(
+    Map<String, dynamic> json, {
+    ValueSerializer? serializer,
+  }) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return StorageRoom(
+      id: serializer.fromJson<int>(json['id']),
+      partId: serializer.fromJson<int>(json['partId']),
+      roomName: serializer.fromJson<String>(json['roomName']),
+    );
+  }
+  @override
+  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
+    serializer ??= driftRuntimeOptions.defaultSerializer;
+    return <String, dynamic>{
+      'id': serializer.toJson<int>(id),
+      'partId': serializer.toJson<int>(partId),
+      'roomName': serializer.toJson<String>(roomName),
+    };
+  }
+
+  StorageRoom copyWith({int? id, int? partId, String? roomName}) => StorageRoom(
+    id: id ?? this.id,
+    partId: partId ?? this.partId,
+    roomName: roomName ?? this.roomName,
+  );
+  StorageRoom copyWithCompanion(StorageRoomsCompanion data) {
+    return StorageRoom(
+      id: data.id.present ? data.id.value : this.id,
+      partId: data.partId.present ? data.partId.value : this.partId,
+      roomName: data.roomName.present ? data.roomName.value : this.roomName,
+    );
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('StorageRoom(')
+          ..write('id: $id, ')
+          ..write('partId: $partId, ')
+          ..write('roomName: $roomName')
+          ..write(')'))
+        .toString();
+  }
+
+  @override
+  int get hashCode => Object.hash(id, partId, roomName);
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      (other is StorageRoom &&
+          other.id == this.id &&
+          other.partId == this.partId &&
+          other.roomName == this.roomName);
+}
+
+class StorageRoomsCompanion extends UpdateCompanion<StorageRoom> {
+  final Value<int> id;
+  final Value<int> partId;
+  final Value<String> roomName;
+  const StorageRoomsCompanion({
+    this.id = const Value.absent(),
+    this.partId = const Value.absent(),
+    this.roomName = const Value.absent(),
+  });
+  StorageRoomsCompanion.insert({
+    this.id = const Value.absent(),
+    required int partId,
+    required String roomName,
+  }) : partId = Value(partId),
+       roomName = Value(roomName);
+  static Insertable<StorageRoom> custom({
+    Expression<int>? id,
+    Expression<int>? partId,
+    Expression<String>? roomName,
+  }) {
+    return RawValuesInsertable({
+      if (id != null) 'id': id,
+      if (partId != null) 'part_id': partId,
+      if (roomName != null) 'room_name': roomName,
+    });
+  }
+
+  StorageRoomsCompanion copyWith({
+    Value<int>? id,
+    Value<int>? partId,
+    Value<String>? roomName,
+  }) {
+    return StorageRoomsCompanion(
+      id: id ?? this.id,
+      partId: partId ?? this.partId,
+      roomName: roomName ?? this.roomName,
+    );
+  }
+
+  @override
+  Map<String, Expression> toColumns(bool nullToAbsent) {
+    final map = <String, Expression>{};
+    if (id.present) {
+      map['id'] = Variable<int>(id.value);
+    }
+    if (partId.present) {
+      map['part_id'] = Variable<int>(partId.value);
+    }
+    if (roomName.present) {
+      map['room_name'] = Variable<String>(roomName.value);
+    }
+    return map;
+  }
+
+  @override
+  String toString() {
+    return (StringBuffer('StorageRoomsCompanion(')
+          ..write('id: $id, ')
+          ..write('partId: $partId, ')
+          ..write('roomName: $roomName')
           ..write(')'))
         .toString();
   }
@@ -473,11 +661,12 @@ abstract class _$AppDatabase extends GeneratedDatabase {
   _$AppDatabase(QueryExecutor e) : super(e);
   $AppDatabaseManager get managers => $AppDatabaseManager(this);
   late final $PartsListTable partsList = $PartsListTable(this);
+  late final $StorageRoomsTable storageRooms = $StorageRoomsTable(this);
   @override
   Iterable<TableInfo<Table, Object?>> get allTables =>
       allSchemaEntities.whereType<TableInfo<Table, Object?>>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [partsList];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [partsList, storageRooms];
 }
 
 typedef $$PartsListTableCreateCompanionBuilder =
@@ -488,7 +677,6 @@ typedef $$PartsListTableCreateCompanionBuilder =
       Value<String?> discription,
       Value<int> number,
       Value<int?> price,
-      Value<String?> storageroom,
     });
 typedef $$PartsListTableUpdateCompanionBuilder =
     PartsListCompanion Function({
@@ -498,7 +686,6 @@ typedef $$PartsListTableUpdateCompanionBuilder =
       Value<String?> discription,
       Value<int> number,
       Value<int?> price,
-      Value<String?> storageroom,
     });
 
 class $$PartsListTableFilterComposer
@@ -537,11 +724,6 @@ class $$PartsListTableFilterComposer
 
   ColumnFilters<int> get price => $composableBuilder(
     column: $table.price,
-    builder: (column) => ColumnFilters(column),
-  );
-
-  ColumnFilters<String> get storageroom => $composableBuilder(
-    column: $table.storageroom,
     builder: (column) => ColumnFilters(column),
   );
 }
@@ -584,11 +766,6 @@ class $$PartsListTableOrderingComposer
     column: $table.price,
     builder: (column) => ColumnOrderings(column),
   );
-
-  ColumnOrderings<String> get storageroom => $composableBuilder(
-    column: $table.storageroom,
-    builder: (column) => ColumnOrderings(column),
-  );
 }
 
 class $$PartsListTableAnnotationComposer
@@ -621,11 +798,6 @@ class $$PartsListTableAnnotationComposer
 
   GeneratedColumn<int> get price =>
       $composableBuilder(column: $table.price, builder: (column) => column);
-
-  GeneratedColumn<String> get storageroom => $composableBuilder(
-    column: $table.storageroom,
-    builder: (column) => column,
-  );
 }
 
 class $$PartsListTableTableManager
@@ -665,7 +837,6 @@ class $$PartsListTableTableManager
                 Value<String?> discription = const Value.absent(),
                 Value<int> number = const Value.absent(),
                 Value<int?> price = const Value.absent(),
-                Value<String?> storageroom = const Value.absent(),
               }) => PartsListCompanion(
                 id: id,
                 title: title,
@@ -673,7 +844,6 @@ class $$PartsListTableTableManager
                 discription: discription,
                 number: number,
                 price: price,
-                storageroom: storageroom,
               ),
           createCompanionCallback:
               ({
@@ -683,7 +853,6 @@ class $$PartsListTableTableManager
                 Value<String?> discription = const Value.absent(),
                 Value<int> number = const Value.absent(),
                 Value<int?> price = const Value.absent(),
-                Value<String?> storageroom = const Value.absent(),
               }) => PartsListCompanion.insert(
                 id: id,
                 title: title,
@@ -691,7 +860,6 @@ class $$PartsListTableTableManager
                 discription: discription,
                 number: number,
                 price: price,
-                storageroom: storageroom,
               ),
           withReferenceMapper: (p0) => p0
               .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
@@ -718,10 +886,168 @@ typedef $$PartsListTableProcessedTableManager =
       PartsListData,
       PrefetchHooks Function()
     >;
+typedef $$StorageRoomsTableCreateCompanionBuilder =
+    StorageRoomsCompanion Function({
+      Value<int> id,
+      required int partId,
+      required String roomName,
+    });
+typedef $$StorageRoomsTableUpdateCompanionBuilder =
+    StorageRoomsCompanion Function({
+      Value<int> id,
+      Value<int> partId,
+      Value<String> roomName,
+    });
+
+class $$StorageRoomsTableFilterComposer
+    extends Composer<_$AppDatabase, $StorageRoomsTable> {
+  $$StorageRoomsTableFilterComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnFilters<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<int> get partId => $composableBuilder(
+    column: $table.partId,
+    builder: (column) => ColumnFilters(column),
+  );
+
+  ColumnFilters<String> get roomName => $composableBuilder(
+    column: $table.roomName,
+    builder: (column) => ColumnFilters(column),
+  );
+}
+
+class $$StorageRoomsTableOrderingComposer
+    extends Composer<_$AppDatabase, $StorageRoomsTable> {
+  $$StorageRoomsTableOrderingComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  ColumnOrderings<int> get id => $composableBuilder(
+    column: $table.id,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<int> get partId => $composableBuilder(
+    column: $table.partId,
+    builder: (column) => ColumnOrderings(column),
+  );
+
+  ColumnOrderings<String> get roomName => $composableBuilder(
+    column: $table.roomName,
+    builder: (column) => ColumnOrderings(column),
+  );
+}
+
+class $$StorageRoomsTableAnnotationComposer
+    extends Composer<_$AppDatabase, $StorageRoomsTable> {
+  $$StorageRoomsTableAnnotationComposer({
+    required super.$db,
+    required super.$table,
+    super.joinBuilder,
+    super.$addJoinBuilderToRootComposer,
+    super.$removeJoinBuilderFromRootComposer,
+  });
+  GeneratedColumn<int> get id =>
+      $composableBuilder(column: $table.id, builder: (column) => column);
+
+  GeneratedColumn<int> get partId =>
+      $composableBuilder(column: $table.partId, builder: (column) => column);
+
+  GeneratedColumn<String> get roomName =>
+      $composableBuilder(column: $table.roomName, builder: (column) => column);
+}
+
+class $$StorageRoomsTableTableManager
+    extends
+        RootTableManager<
+          _$AppDatabase,
+          $StorageRoomsTable,
+          StorageRoom,
+          $$StorageRoomsTableFilterComposer,
+          $$StorageRoomsTableOrderingComposer,
+          $$StorageRoomsTableAnnotationComposer,
+          $$StorageRoomsTableCreateCompanionBuilder,
+          $$StorageRoomsTableUpdateCompanionBuilder,
+          (
+            StorageRoom,
+            BaseReferences<_$AppDatabase, $StorageRoomsTable, StorageRoom>,
+          ),
+          StorageRoom,
+          PrefetchHooks Function()
+        > {
+  $$StorageRoomsTableTableManager(_$AppDatabase db, $StorageRoomsTable table)
+    : super(
+        TableManagerState(
+          db: db,
+          table: table,
+          createFilteringComposer: () =>
+              $$StorageRoomsTableFilterComposer($db: db, $table: table),
+          createOrderingComposer: () =>
+              $$StorageRoomsTableOrderingComposer($db: db, $table: table),
+          createComputedFieldComposer: () =>
+              $$StorageRoomsTableAnnotationComposer($db: db, $table: table),
+          updateCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                Value<int> partId = const Value.absent(),
+                Value<String> roomName = const Value.absent(),
+              }) => StorageRoomsCompanion(
+                id: id,
+                partId: partId,
+                roomName: roomName,
+              ),
+          createCompanionCallback:
+              ({
+                Value<int> id = const Value.absent(),
+                required int partId,
+                required String roomName,
+              }) => StorageRoomsCompanion.insert(
+                id: id,
+                partId: partId,
+                roomName: roomName,
+              ),
+          withReferenceMapper: (p0) => p0
+              .map((e) => (e.readTable(table), BaseReferences(db, table, e)))
+              .toList(),
+          prefetchHooksCallback: null,
+        ),
+      );
+}
+
+typedef $$StorageRoomsTableProcessedTableManager =
+    ProcessedTableManager<
+      _$AppDatabase,
+      $StorageRoomsTable,
+      StorageRoom,
+      $$StorageRoomsTableFilterComposer,
+      $$StorageRoomsTableOrderingComposer,
+      $$StorageRoomsTableAnnotationComposer,
+      $$StorageRoomsTableCreateCompanionBuilder,
+      $$StorageRoomsTableUpdateCompanionBuilder,
+      (
+        StorageRoom,
+        BaseReferences<_$AppDatabase, $StorageRoomsTable, StorageRoom>,
+      ),
+      StorageRoom,
+      PrefetchHooks Function()
+    >;
 
 class $AppDatabaseManager {
   final _$AppDatabase _db;
   $AppDatabaseManager(this._db);
   $$PartsListTableTableManager get partsList =>
       $$PartsListTableTableManager(_db, _db.partsList);
+  $$StorageRoomsTableTableManager get storageRooms =>
+      $$StorageRoomsTableTableManager(_db, _db.storageRooms);
 }

@@ -11,7 +11,7 @@ class SettingsPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n!.appbar_settings),
+        title: Text(l10n?.appbar_settings ?? 'Settings'),
         centerTitle: true,
       ),
     );
