@@ -1,4 +1,4 @@
-name: Flutter Build
+name: Flutter Build & Release
 
 on:
   push:
@@ -7,9 +7,20 @@ on:
 jobs:
   build-android:
     runs-on: ubuntu-latest
+    
+    permissions:
+      contents: write
 
     steps:
       - uses: actions/checkout@v4
+
+      # 1. Versionsnummer aus der pubspec.yaml extrahieren
+      - name: Get Version from pubspec.yaml
+        id: get_version
+        run: |
+          VERSION=$(grep '^version: ' pubspec.yaml | sed 's/version: //' | cut -d'+' -f1 | tr -d '[:space:]')
+          echo "APP_VERSION=$VERSION" >> $GITHUB_ENV
+          echo "Version gefunden: $VERSION"
 
       - uses: subosito/flutter-action@v2
         with:
@@ -22,14 +33,26 @@ jobs:
       - name: Build APK
         env:
           KEYSTORE_FILE: keystore.jks
-          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
           KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
         run: |
           flutter pub get
           flutter build apk --release
 
-      - uses: actions/upload-artifact@v4
+      # 2. APK umbenennen (Nutzt die extrahierte Version aus der Umgebungsvariable)
+      - name: Rename APK
+        run: |
+          mv build/app/outputs/flutter-apk/app-release.apk build/app/outputs/flutter-apk/FogStorage_v${{ env.APP_VERSION }}.apk
+
+      # 3. GitHub Release erstellen und die umbenannte APK hochladen
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
         with:
-          name: android-apk
-          path: build/app/outputs/flutter-apk/app-release.apk
+          tag_name: v${{ env.APP_VERSION }}
+          name: Release v${{ env.APP_VERSION }}
+          draft: false
+          prerelease: false
+          files: build/app/outputs/flutter-apk/FogStorage_v${{ env.APP_VERSION }}.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
