@@ -9,17 +9,19 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n?.appbar_home ?? 'Home'),
+        title: Text(l10n.appbar_home),
         centerTitle: true,
       ),
       // Der StreamBuilder lauscht live auf Änderungen in der partsList-Tabelle
       body: StreamBuilder<List<PartsListData>>(
         stream: database.select(database.partsList).watch(),
         builder: (context, snapshot) {
+          final l10n = AppLocalizations.of(context)!;
+
           // 1. Lade-Zustand (wenn die DB noch abgefragt wird)
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -27,15 +29,15 @@ class HomePage extends StatelessWidget {
 
           // 2. Fehler-Zustand
           if (snapshot.hasError) {
-            return Center(child: Text('Fehler beim Laden: ${snapshot.error}'));
+            return Center(child: Text(l10n.home_load_error('${snapshot.error}')));
           }
 
           // 3. Zustand: Keine Daten vorhanden
           final parts = snapshot.data;
           if (parts == null || parts.isEmpty) {
-            return const Center(
+            return Center(
               child: Text(
-                'Noch keine Teile eingetragen.\nNutze das Plus-Symbol, um Daten hinzuzufügen.',
+                l10n.home_empty_state,
                 textAlign: TextAlign.center,
                 style: TextStyle(color: Colors.grey),
               ),
@@ -62,7 +64,7 @@ class HomePage extends StatelessWidget {
                   ),
                   title: Text(part.title, style: const TextStyle(fontWeight: FontWeight.bold)),
                   subtitle: Text(
-                    'Art.-Nr: ${part.partnumber ?? "-"} \n${part.discription ?? ""}',
+                    '${l10n.home_article_number_prefix(part.partnumber ?? '-')} \n${part.discription ?? ""}',
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),

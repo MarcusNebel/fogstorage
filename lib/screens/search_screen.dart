@@ -7,11 +7,11 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(l10n?.appbar_search ?? 'Search'),
+        title: Text(l10n.appbar_search),
         centerTitle: true,
       ),
     );

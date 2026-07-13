@@ -98,6 +98,12 @@ abstract class AppLocalizations {
     Locale('en'),
   ];
 
+  /// No description provided for @app_name.
+  ///
+  /// In en, this message translates to:
+  /// **'FogStorage'**
+  String get app_name;
+
   /// No description provided for @navbar_home.
   ///
   /// In en, this message translates to:
@@ -145,6 +151,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Settings'**
   String get appbar_settings;
+
+  /// No description provided for @add_title_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get add_title_label;
+
+  /// No description provided for @add_title_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a title'**
+  String get add_title_required;
+
+  /// No description provided for @add_article_number_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Article number'**
+  String get add_article_number_label;
+
+  /// No description provided for @add_description_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Description'**
+  String get add_description_label;
+
+  /// No description provided for @add_quantity_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity'**
+  String get add_quantity_label;
+
+  /// No description provided for @add_price_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Price (€)'**
+  String get add_price_label;
+
+  /// No description provided for @add_location_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage location'**
+  String get add_location_label;
+
+  /// No description provided for @add_location_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a storage location'**
+  String get add_location_hint;
+
+  /// No description provided for @add_location_required.
+  ///
+  /// In en, this message translates to:
+  /// **'Please choose a storage location'**
+  String get add_location_required;
+
+  /// No description provided for @add_new_location.
+  ///
+  /// In en, this message translates to:
+  /// **'Add new...'**
+  String get add_new_location;
+
+  /// No description provided for @add_save_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Save to database'**
+  String get add_save_button;
+
+  /// No description provided for @add_dialog_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Add new storage location'**
+  String get add_dialog_title;
+
+  /// No description provided for @add_dialog_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Shelf C3'**
+  String get add_dialog_hint;
+
+  /// No description provided for @add_dialog_cancel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get add_dialog_cancel;
+
+  /// No description provided for @add_dialog_add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get add_dialog_add;
+
+  /// No description provided for @add_save_success.
+  ///
+  /// In en, this message translates to:
+  /// **'Part and storage location were successfully linked and saved!'**
+  String get add_save_success;
+
+  /// No description provided for @add_save_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while saving: {error}'**
+  String add_save_error(Object error);
+
+  /// No description provided for @home_load_error.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while loading: {error}'**
+  String home_load_error(Object error);
+
+  /// No description provided for @home_empty_state.
+  ///
+  /// In en, this message translates to:
+  /// **'No parts have been added yet.\nUse the plus symbol to add data.'**
+  String get home_empty_state;
+
+  /// No description provided for @home_article_number_prefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Art. No.: {value}'**
+  String home_article_number_prefix(Object value);
 }
 
 class _AppLocalizationsDelegate
