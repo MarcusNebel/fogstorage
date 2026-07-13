@@ -1,4 +1,4 @@
-package com.example.fogstorage
+package com.marcusnebel.fogstorage
 
 import io.flutter.embedding.android.FlutterActivity
 
