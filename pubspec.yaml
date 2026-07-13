@@ -1,0 +1,44 @@
+name: fogstorage
+description: "A simple storage management app"
+publish_to: 'none'
+version: 0.0.0
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  drift: ^2.34.0
+  sqlite3_flutter_libs: ^0.5.0
+  flutter:
+    sdk: flutter
+  flutter_launcher_icons: ^0.14.4
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.20.2
+  path_provider: ^2.1.0
+  path: ^1.9.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  drift_dev: ^2.20.0
+  build_runner: ^2.4.0
+
+flutter:
+  generate: true
+  uses-material-design: true
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon/logo_no_bg.png"
+
+  # Spezifisch für iOS:
+  remove_alpha_ios: true
+  background_color_ios: "#0f141b" # Hier Schwarz statt Weiß setzen!
+
+  # Spezifisch für Android:
+  adaptive_icon_background: "#0f141b"
+  adaptive_icon_foreground: "assets/icon/logo_no_bg.png"
+  adaptive_icon_monochrome: "assets/icon/logo_no_bg.png"
