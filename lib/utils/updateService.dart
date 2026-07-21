@@ -73,18 +73,18 @@ class UpdateService {
 
       // Prüfen, ob die Datei bereits heruntergeladen wurde
       if (!await file.exists()) {
-        print("Lade Update herunter...");
+        print("Downloading updates...");
         var response = await http.get(Uri.parse(url));
         await file.writeAsBytes(response.bodyBytes);
-        print("Download abgeschlossen.");
+        print("Download successfull.");
       } else {
-        print("APK existiert bereits im Cache, starte Installation.");
+        print("APK already exists in cache, starting installation.");
       }
 
       // APK ausführen / Installation starten
       await OpenFilex.open(filePath);
     } else {
-      print("Berechtigung zur Installation wurde verweigert.");
+      print("Permissions denied for installation.");
     }
   }
 
@@ -102,7 +102,7 @@ class UpdateService {
         }
       }
     } catch (e) {
-      print("Fehler beim Bereinigen alter APKs: $e");
+      print("Error by cleaning old APKs: $e");
     }
   }
 }

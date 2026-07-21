@@ -27,7 +27,7 @@ class _NavigationBarComponentState extends State<NavigationBarComponent> {
     // Die Liste wird hierhin verschoben, damit wir auf 'widget.database' zugreifen können
     final List<Widget> pages = [
       HomePage(database: widget.database,),
-      const SearchPage(),
+      SearchPage(database: widget.database),
 
       AddPage(
         database: widget.database,

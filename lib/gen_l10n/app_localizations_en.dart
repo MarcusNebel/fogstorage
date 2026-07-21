@@ -102,4 +102,49 @@ class AppLocalizationsEn extends AppLocalizations {
   String home_article_number_prefix(Object value) {
     return 'Art. No.: $value';
   }
+
+  @override
+  String get search_title_label => 'Search parts by title';
+
+  @override
+  String get search_title_hint => 'e.g. screw, motor, housing';
+
+  @override
+  String get search_filter_room_label => 'Filter by storage location';
+
+  @override
+  String get search_filter_room_all => 'All storage locations';
+
+  @override
+  String get search_sort_label => 'Sort by';
+
+  @override
+  String get search_sort_title => 'Title';
+
+  @override
+  String get search_sort_price => 'Price';
+
+  @override
+  String get search_sort_quantity => 'Quantity';
+
+  @override
+  String search_error_loading_parts(Object error) {
+    return 'Error while loading parts: $error';
+  }
+
+  @override
+  String search_error_loading_rooms(Object error) {
+    return 'Error while loading storage locations: $error';
+  }
+
+  @override
+  String get search_empty_parts => 'No parts have been added yet.';
+
+  @override
+  String get search_no_results => 'No results for these filters.';
+
+  @override
+  String search_room_prefix(Object value) {
+    return 'Storage location: $value';
+  }
 }

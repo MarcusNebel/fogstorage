@@ -29,6 +29,50 @@
     "add_save_success": "Part and storage location were successfully linked and saved!",
     "add_save_error": "Error while saving: {error}",
     "home_load_error": "Error while loading: {error}",
+    "@add_save_error": {
+        "placeholders": {
+            "error": {}
+        }
+    },
+    "@home_load_error": {
+        "placeholders": {
+            "error": {}
+        }
+    },
     "home_empty_state": "No parts have been added yet.\nUse the plus symbol to add data.",
-    "home_article_number_prefix": "Art. No.: {value}"
+    "home_article_number_prefix": "Art. No.: {value}",
+    "@home_article_number_prefix": {
+        "placeholders": {
+            "value": {}
+        }
+    },
+
+    "search_title_label": "Search parts by title",
+    "search_title_hint": "e.g. screw, motor, housing",
+    "search_filter_room_label": "Filter by storage location",
+    "search_filter_room_all": "All storage locations",
+    "search_sort_label": "Sort by",
+    "search_sort_title": "Title",
+    "search_sort_price": "Price",
+    "search_sort_quantity": "Quantity",
+    "search_error_loading_parts": "Error while loading parts: {error}",
+    "search_error_loading_rooms": "Error while loading storage locations: {error}",
+    "search_empty_parts": "No parts have been added yet.",
+    "search_no_results": "No results for these filters.",
+    "@search_error_loading_parts": {
+        "placeholders": {
+            "error": {}
+        }
+    },
+    "@search_error_loading_rooms": {
+        "placeholders": {
+            "error": {}
+        }
+    },
+    "@search_room_prefix": {
+        "placeholders": {
+            "value": {}
+        }
+    },
+    "search_room_prefix": "Storage location: {value}"
 }

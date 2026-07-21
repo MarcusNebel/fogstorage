@@ -271,6 +271,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Art. No.: {value}'**
   String home_article_number_prefix(Object value);
+
+  /// No description provided for @search_title_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Search parts by title'**
+  String get search_title_label;
+
+  /// No description provided for @search_title_hint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. screw, motor, housing'**
+  String get search_title_hint;
+
+  /// No description provided for @search_filter_room_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Filter by storage location'**
+  String get search_filter_room_label;
+
+  /// No description provided for @search_filter_room_all.
+  ///
+  /// In en, this message translates to:
+  /// **'All storage locations'**
+  String get search_filter_room_all;
+
+  /// No description provided for @search_sort_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Sort by'**
+  String get search_sort_label;
+
+  /// No description provided for @search_sort_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Title'**
+  String get search_sort_title;
+
+  /// No description provided for @search_sort_price.
+  ///
+  /// In en, this message translates to:
+  /// **'Price'**
+  String get search_sort_price;
+
+  /// No description provided for @search_sort_quantity.
+  ///
+  /// In en, this message translates to:
+  /// **'Quantity'**
+  String get search_sort_quantity;
+
+  /// No description provided for @search_error_loading_parts.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while loading parts: {error}'**
+  String search_error_loading_parts(Object error);
+
+  /// No description provided for @search_error_loading_rooms.
+  ///
+  /// In en, this message translates to:
+  /// **'Error while loading storage locations: {error}'**
+  String search_error_loading_rooms(Object error);
+
+  /// No description provided for @search_empty_parts.
+  ///
+  /// In en, this message translates to:
+  /// **'No parts have been added yet.'**
+  String get search_empty_parts;
+
+  /// No description provided for @search_no_results.
+  ///
+  /// In en, this message translates to:
+  /// **'No results for these filters.'**
+  String get search_no_results;
+
+  /// No description provided for @search_room_prefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Storage location: {value}'**
+  String search_room_prefix(Object value);
 }
 
 class _AppLocalizationsDelegate
