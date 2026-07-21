@@ -147,4 +147,62 @@ class AppLocalizationsEn extends AppLocalizations {
   String search_room_prefix(Object value) {
     return 'Storage location: $value';
   }
+
+  @override
+  String get update_section_title => 'Update system';
+
+  @override
+  String get update_section_description =>
+      'Check for new releases and install them later if you want.';
+
+  @override
+  String get update_current_version_label => 'Current version';
+
+  @override
+  String get update_latest_version_label => 'Latest version';
+
+  @override
+  String get update_last_checked_label => 'Last checked';
+
+  @override
+  String get update_status_label => 'Status';
+
+  @override
+  String get update_status_not_checked => 'Not checked yet';
+
+  @override
+  String get update_status_checking => 'Checking for updates...';
+
+  @override
+  String get update_status_up_to_date => 'You are up to date';
+
+  @override
+  String get update_status_update_available => 'Update available';
+
+  @override
+  String get update_status_downloaded =>
+      'Update downloaded and ready to install';
+
+  @override
+  String get update_check_button => 'Check now';
+
+  @override
+  String get update_install_button => 'Install update';
+
+  @override
+  String get update_no_download => 'No downloaded update is available yet.';
+
+  @override
+  String update_error_prefix(Object error) {
+    return 'Error: $error';
+  }
+
+  @override
+  String get settings_version_label => 'App version';
+
+  @override
+  String get settings_github_title => 'GitHub repository';
+
+  @override
+  String get settings_github_subtitle => 'View source code and releases';
 }

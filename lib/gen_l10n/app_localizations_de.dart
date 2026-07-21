@@ -147,4 +147,63 @@ class AppLocalizationsDe extends AppLocalizations {
   String search_room_prefix(Object value) {
     return 'Lagerort: $value';
   }
+
+  @override
+  String get update_section_title => 'Update-System';
+
+  @override
+  String get update_section_description =>
+      'Nach neuen Versionen suchen und sie später bei Bedarf installieren.';
+
+  @override
+  String get update_current_version_label => 'Aktuelle Version';
+
+  @override
+  String get update_latest_version_label => 'Neueste Version';
+
+  @override
+  String get update_last_checked_label => 'Zuletzt geprüft';
+
+  @override
+  String get update_status_label => 'Status';
+
+  @override
+  String get update_status_not_checked => 'Noch nicht geprüft';
+
+  @override
+  String get update_status_checking => 'Suche nach Updates...';
+
+  @override
+  String get update_status_up_to_date => 'Du bist auf dem neuesten Stand';
+
+  @override
+  String get update_status_update_available => 'Update verfügbar';
+
+  @override
+  String get update_status_downloaded =>
+      'Update heruntergeladen und bereit zur Installation';
+
+  @override
+  String get update_check_button => 'Jetzt prüfen';
+
+  @override
+  String get update_install_button => 'Update installieren';
+
+  @override
+  String get update_no_download =>
+      'Noch kein heruntergeladenes Update verfügbar.';
+
+  @override
+  String update_error_prefix(Object error) {
+    return 'Fehler: $error';
+  }
+
+  @override
+  String get settings_version_label => 'App-Version';
+
+  @override
+  String get settings_github_title => 'GitHub Repository';
+
+  @override
+  String get settings_github_subtitle => 'Quellcode und Releases ansehen';
 }

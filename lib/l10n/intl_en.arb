@@ -74,5 +74,30 @@
             "value": {}
         }
     },
-    "search_room_prefix": "Storage location: {value}"
+    "search_room_prefix": "Storage location: {value}",
+
+    "update_section_title": "Update system",
+    "update_section_description": "Check for new releases and install them later if you want.",
+    "update_current_version_label": "Current version",
+    "update_latest_version_label": "Latest version",
+    "update_last_checked_label": "Last checked",
+    "update_status_label": "Status",
+    "update_status_not_checked": "Not checked yet",
+    "update_status_checking": "Checking for updates...",
+    "update_status_up_to_date": "You are up to date",
+    "update_status_update_available": "Update available",
+    "update_status_downloaded": "Update downloaded and ready to install",
+    "update_check_button": "Check now",
+    "update_install_button": "Install update",
+    "update_no_download": "No downloaded update is available yet.",
+    "update_error_prefix": "Error: {error}",
+    "@update_error_prefix": {
+        "placeholders": {
+            "error": {}
+        }
+    }
+    ,
+    "settings_version_label": "App version",
+    "settings_github_title": "GitHub repository",
+    "settings_github_subtitle": "View source code and releases"
 }
