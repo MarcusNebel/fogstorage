@@ -102,4 +102,49 @@ class AppLocalizationsDe extends AppLocalizations {
   String home_article_number_prefix(Object value) {
     return 'Art.-Nr: $value';
   }
+
+  @override
+  String get search_title_label => 'Teile nach Titel suchen';
+
+  @override
+  String get search_title_hint => 'z. B. Schraube, Motor, Gehäuse';
+
+  @override
+  String get search_filter_room_label => 'Nach Lagerort filtern';
+
+  @override
+  String get search_filter_room_all => 'Alle Lagerorte';
+
+  @override
+  String get search_sort_label => 'Sortieren nach';
+
+  @override
+  String get search_sort_title => 'Titel';
+
+  @override
+  String get search_sort_price => 'Preis';
+
+  @override
+  String get search_sort_quantity => 'Stückzahl';
+
+  @override
+  String search_error_loading_parts(Object error) {
+    return 'Fehler beim Laden der Teile: $error';
+  }
+
+  @override
+  String search_error_loading_rooms(Object error) {
+    return 'Fehler beim Laden der Lagerorte: $error';
+  }
+
+  @override
+  String get search_empty_parts => 'Noch keine Teile vorhanden.';
+
+  @override
+  String get search_no_results => 'Keine Treffer für diese Filter.';
+
+  @override
+  String search_room_prefix(Object value) {
+    return 'Lagerort: $value';
+  }
 }

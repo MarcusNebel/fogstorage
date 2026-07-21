@@ -30,5 +30,49 @@
     "add_save_error": "Fehler beim Speichern: {error}",
     "home_load_error": "Fehler beim Laden: {error}",
     "home_empty_state": "Noch keine Teile eingetragen.\nNutze das Plus-Symbol, um Daten hinzuzufügen.",
-    "home_article_number_prefix": "Art.-Nr: {value}"
+    "home_article_number_prefix": "Art.-Nr: {value}",
+    "@add_save_error": {
+        "placeholders": {
+            "error": {}
+        }
+    },
+    "@home_load_error": {
+        "placeholders": {
+            "error": {}
+        }
+    },
+    "@home_article_number_prefix": {
+        "placeholders": {
+            "value": {}
+        }
+    },
+
+    "search_title_label": "Teile nach Titel suchen",
+    "search_title_hint": "z. B. Schraube, Motor, Gehäuse",
+    "search_filter_room_label": "Nach Lagerort filtern",
+    "search_filter_room_all": "Alle Lagerorte",
+    "search_sort_label": "Sortieren nach",
+    "search_sort_title": "Titel",
+    "search_sort_price": "Preis",
+    "search_sort_quantity": "Stückzahl",
+    "search_error_loading_parts": "Fehler beim Laden der Teile: {error}",
+    "search_error_loading_rooms": "Fehler beim Laden der Lagerorte: {error}",
+    "search_empty_parts": "Noch keine Teile vorhanden.",
+    "search_no_results": "Keine Treffer für diese Filter.",
+    "@search_error_loading_parts": {
+        "placeholders": {
+            "error": {}
+        }
+    },
+    "@search_error_loading_rooms": {
+        "placeholders": {
+            "error": {}
+        }
+    },
+    "@search_room_prefix": {
+        "placeholders": {
+            "value": {}
+        }
+    },
+    "search_room_prefix": "Lagerort: {value}"
 }
