@@ -31,8 +31,32 @@ class _AddPageState extends State<AddPage> {
   final _priceController = TextEditingController();
 
   int _quantity = 1;
-  final List<String> _locations = ['Regal A1', 'Regal B2', 'Kiste 3'];
+
+  // Dynamische Liste für Orte aus der DB
+  List<String> _locations = [];
   String? _selectedLocation;
+  bool _isLoadingLocations = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadLocations();
+  }
+
+  // Lagerorte aus der DB laden
+  Future<void> _loadLocations() async {
+    try {
+      final dbLocations = await widget.database.getAllStorageRooms();
+      setState(() {
+        _locations = dbLocations;
+        _isLoadingLocations = false;
+      });
+    } catch (e) {
+      setState(() {
+        _isLoadingLocations = false;
+      });
+    }
+  }
 
   @override
   void dispose() {
@@ -49,10 +73,19 @@ class _AddPageState extends State<AddPage> {
       builder: (context) => const AddLocationDialog(),
     );
 
-    if (result != null) {
+    if (result != null && result.trim().isNotEmpty) {
+      final newLocationName = result.trim();
       setState(() {
-        _locations.add(result);
-        _selectedLocation = result;
+        // Neuen Ort lokal zur Auswahlliste hinzufügen, falls noch nicht vorhanden
+        if (!_locations.contains(newLocationName)) {
+          _locations.add(newLocationName);
+        }
+        _selectedLocation = newLocationName;
+      });
+    } else {
+      // Falls der Nutzer im Dialog auf "Abbrechen" drückt, Auswahl zurücksetzen
+      setState(() {
+        _selectedLocation = null;
       });
     }
   }
@@ -93,6 +126,10 @@ class _AddPageState extends State<AddPage> {
           _articleNumberController.clear();
           _descriptionController.clear();
           _priceController.clear();
+
+          // Nach dem Speichern die Liste der Orte aktualisieren
+          await _loadLocations();
+
           setState(() {
             _quantity = 1;
             _selectedLocation = null;
@@ -112,39 +149,40 @@ class _AddPageState extends State<AddPage> {
 
   @override
   Widget build(BuildContext context) {
-    final l10n = AppLocalizations.of(context);
-    final appLocalizations = l10n!;
+    final l10n = AppLocalizations.of(context)!;
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(appLocalizations.appbar_add),
+        title: Text(l10n.appbar_add),
         centerTitle: true,
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: AddFormContent(
-          formKey: _formKey,
-          titleController: _titleController,
-          articleNumberController: _articleNumberController,
-          descriptionController: _descriptionController,
-          priceController: _priceController,
-          quantity: _quantity,
-          locations: _locations,
-          selectedLocation: _selectedLocation,
-          onIncrementQuantity: () => setState(() => _quantity++),
-          onDecrementQuantity: () => setState(() => _quantity--),
-          onSave: _saveToDatabase,
-          onLocationChanged: (String? newValue) {
-            if (newValue == 'ADD_NEW') {
-              _addNewLocation();
-            } else {
-              setState(() {
-                _selectedLocation = newValue;
-              });
-            }
-          },
-        ),
-      ),
+      body: _isLoadingLocations
+          ? const Center(child: CircularProgressIndicator())
+          : SingleChildScrollView(
+              padding: const EdgeInsets.all(16.0),
+              child: AddFormContent(
+                formKey: _formKey,
+                titleController: _titleController,
+                articleNumberController: _articleNumberController,
+                descriptionController: _descriptionController,
+                priceController: _priceController,
+                quantity: _quantity,
+                locations: _locations,
+                selectedLocation: _selectedLocation,
+                onIncrementQuantity: () => setState(() => _quantity++),
+                onDecrementQuantity: () => setState(() => _quantity--),
+                onSave: _saveToDatabase,
+                onLocationChanged: (String? newValue) {
+                  if (newValue == 'ADD_NEW') {
+                    _addNewLocation();
+                  } else {
+                    setState(() {
+                      _selectedLocation = newValue;
+                    });
+                  }
+                },
+              ),
+            ),
     );
   }
 }

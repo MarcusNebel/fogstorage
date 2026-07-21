@@ -30,6 +30,20 @@ class AppDatabase extends _$AppDatabase {
 
   @override
   int get schemaVersion => 1;
+
+  // Diese Methode holt alle einmaligen/eindeutigen Lagerorte aus der Datenbank:
+  Future<List<String>> getAllStorageRooms() async {
+    final query = selectOnly(storageRooms, distinct: true)
+      ..addColumns([storageRooms.roomName]);
+
+    final rows = await query.get();
+    
+    // Wandelt die Datenbankzeilen in eine reine String-Liste um
+    return rows
+        .map((row) => row.read(storageRooms.roomName))
+        .whereType<String>() // Filtert eventuelle null-Werte heraus
+        .toList();
+  }
 }
 
 // 3. Die korrekte Verbindungsfunktion (ohne veraltete RuntimeOptions)
