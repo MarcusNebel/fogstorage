@@ -3,6 +3,7 @@ import 'package:fogstorage/components/navigation_bar_view.dart';
 import 'package:fogstorage/gen_l10n/app_localizations.dart';
 import 'package:fogstorage/utils/database.dart';
 import 'package:fogstorage/utils/updateService.dart';
+import 'dart:async';
 
 // 1. Aus StatelessWidget wird ein StatefulWidget
 class MainApp extends StatefulWidget {
@@ -16,12 +17,10 @@ class MainApp extends StatefulWidget {
 
 // 2. Die dazugehörige State-Klasse
 class _MainAppState extends State<MainApp> {
-  
   @override
-  void initState() { // Richtig geschrieben!
+  void initState() {
     super.initState();
-    // Update-Prüfung beim Start ausführen
-    UpdateService().checkForUpdates();
+    unawaited(UpdateService().checkForUpdates(autoInstall: false));
   }
 
   @override
@@ -29,11 +28,9 @@ class _MainAppState extends State<MainApp> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: const [
-        Locale('en'),
-        Locale('de'),
-      ],
-      // Wichtig: Auf Variablen aus dem Widget greift man hier mit "widget.name" zu
+      supportedLocales: AppLocalizations.supportedLocales,
+      onGenerateTitle: (context) => AppLocalizations.of(context)!.app_name,
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: NavigationBarComponent(database: widget.database),
     );
   }

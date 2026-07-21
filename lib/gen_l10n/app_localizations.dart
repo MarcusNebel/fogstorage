@@ -349,6 +349,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Storage location: {value}'**
   String search_room_prefix(Object value);
+
+  /// No description provided for @update_section_title.
+  ///
+  /// In en, this message translates to:
+  /// **'Update system'**
+  String get update_section_title;
+
+  /// No description provided for @update_section_description.
+  ///
+  /// In en, this message translates to:
+  /// **'Check for new releases and install them later if you want.'**
+  String get update_section_description;
+
+  /// No description provided for @update_current_version_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Current version'**
+  String get update_current_version_label;
+
+  /// No description provided for @update_latest_version_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Latest version'**
+  String get update_latest_version_label;
+
+  /// No description provided for @update_last_checked_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Last checked'**
+  String get update_last_checked_label;
+
+  /// No description provided for @update_status_label.
+  ///
+  /// In en, this message translates to:
+  /// **'Status'**
+  String get update_status_label;
+
+  /// No description provided for @update_status_not_checked.
+  ///
+  /// In en, this message translates to:
+  /// **'Not checked yet'**
+  String get update_status_not_checked;
+
+  /// No description provided for @update_status_checking.
+  ///
+  /// In en, this message translates to:
+  /// **'Checking for updates...'**
+  String get update_status_checking;
+
+  /// No description provided for @update_status_up_to_date.
+  ///
+  /// In en, this message translates to:
+  /// **'You are up to date'**
+  String get update_status_up_to_date;
+
+  /// No description provided for @update_status_update_available.
+  ///
+  /// In en, this message translates to:
+  /// **'Update available'**
+  String get update_status_update_available;
+
+  /// No description provided for @update_status_downloaded.
+  ///
+  /// In en, this message translates to:
+  /// **'Update downloaded and ready to install'**
+  String get update_status_downloaded;
+
+  /// No description provided for @update_check_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Check now'**
+  String get update_check_button;
+
+  /// No description provided for @update_install_button.
+  ///
+  /// In en, this message translates to:
+  /// **'Install update'**
+  String get update_install_button;
+
+  /// No description provided for @update_no_download.
+  ///
+  /// In en, this message translates to:
+  /// **'No downloaded update is available yet.'**
+  String get update_no_download;
+
+  /// No description provided for @update_error_prefix.
+  ///
+  /// In en, this message translates to:
+  /// **'Error: {error}'**
+  String update_error_prefix(Object error);
+
+  /// No description provided for @settings_version_label.
+  ///
+  /// In en, this message translates to:
+  /// **'App version'**
+  String get settings_version_label;
+
+  /// No description provided for @settings_github_title.
+  ///
+  /// In en, this message translates to:
+  /// **'GitHub repository'**
+  String get settings_github_title;
+
+  /// No description provided for @settings_github_subtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'View source code and releases'**
+  String get settings_github_subtitle;
 }
 
 class _AppLocalizationsDelegate
