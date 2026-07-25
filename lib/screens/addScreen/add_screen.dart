@@ -155,6 +155,7 @@ class _AddPageState extends State<AddPage> {
       appBar: AppBar(
         title: Text(l10n.appbar_add),
         centerTitle: true,
+        backgroundColor: Theme.of(context).colorScheme.background,
       ),
       body: _isLoadingLocations
           ? const Center(child: CircularProgressIndicator())

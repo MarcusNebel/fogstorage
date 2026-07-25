@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fogstorage/appTheme.dart';
 import 'package:fogstorage/gen_l10n/app_localizations.dart';
 import 'package:fogstorage/utils/database.dart'; // Import für deine Datenbank-Klassen
+import 'package:fogstorage/appTheme.dart';
 
 class HomePage extends StatelessWidget {
   final AppDatabase database; // Datenbank-Instanz wird von außen übergeben
@@ -15,6 +17,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: Text(l10n.appbar_home),
         centerTitle: true,
+        backgroundColor: Theme.of(context).colorScheme.background,
       ),
       // Der StreamBuilder lauscht live auf Änderungen in der partsList-Tabelle
       body: StreamBuilder<List<PartsListData>>(
@@ -59,7 +62,7 @@ class HomePage extends StatelessWidget {
                 margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 4),
                 child: ListTile(
                   leading: CircleAvatar(
-                    backgroundColor: Colors.blue.shade100,
+                    backgroundColor: Theme.of(context).colorScheme.primary,
                     child: Text('${part.number}x', style: const TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
                   ),
                   title: Text(part.title, style: const TextStyle(fontWeight: FontWeight.bold)),

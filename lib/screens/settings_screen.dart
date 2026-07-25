@@ -59,6 +59,7 @@ class _SettingsPageState extends State<SettingsPage> {
       appBar: AppBar(
         title: Text(l10n.appbar_settings),
         centerTitle: true,
+        backgroundColor: Theme.of(context).colorScheme.background,
       ),
       body: ListView(
         children: [

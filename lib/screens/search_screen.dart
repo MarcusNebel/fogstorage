@@ -100,6 +100,7 @@ class _SearchPageState extends State<SearchPage> {
       appBar: AppBar(
         title: Text(l10n.appbar_search),
         centerTitle: true,
+        backgroundColor: Theme.of(context).colorScheme.background,
       ),
       body: Column(
         children: [
@@ -304,7 +305,7 @@ class _SearchPageState extends State<SearchPage> {
                                 elevation: 2,
                                 child: ListTile(
                                   leading: CircleAvatar(
-                                    backgroundColor: Colors.blue.shade100,
+                                    backgroundColor: Theme.of(context).colorScheme.primary,
                                     child: Text(
                                       '${part.number}x',
                                       style: const TextStyle(
