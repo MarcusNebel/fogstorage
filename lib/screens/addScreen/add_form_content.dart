@@ -118,9 +118,9 @@ class AddFormContent extends StatelessWidget {
                 value: 'ADD_NEW',
                 child: Row(
                   children: [
-                    const Icon(Icons.add, color: Colors.blue),
+                    Icon(Icons.add, color: Theme.of(context).colorScheme.primary),
                     const SizedBox(width: 8),
-                    Text(l10n.add_new_location, style: const TextStyle(color: Colors.blue, fontWeight: FontWeight.bold)),
+                    Text(l10n.add_new_location, style: TextStyle(color: Theme.of(context).colorScheme.primary, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
